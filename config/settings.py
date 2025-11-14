@@ -44,13 +44,16 @@ INSTALLED_APPS = [
     #pacages
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_spectacular'
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
 }
+
 
 from datetime import timedelta
 
@@ -156,6 +159,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Replace with your email host (e.g., 'smtp.gmail.com')
+EMAIL_PORT = 587  # Or 465 for SSL
+EMAIL_USE_TLS = True  # Or EMAIL_USE_SSL = True for port 465
+EMAIL_HOST_USER = 'husanovmurodjon98@gmail.com'
+EMAIL_HOST_PASSWORD = 'fbfn qgqw rbdt iifg' # Use an app-specific password if available (e.g., for Gmail)
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+    
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
