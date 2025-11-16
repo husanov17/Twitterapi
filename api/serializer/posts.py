@@ -1,13 +1,20 @@
-from django.db import models
-from api.models import User
+from rest_framework import serializers
+from api.models.posts import Post, Media
 
 
+class MediaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Media
+        fields = "__all__"
 
-class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at= models.DateTimeField(auto_now=True)
+
+class PostSerializer(serializers.ModelSerializer):
+    mediafiles = MediaSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Post
+        fields = "__all__"
+
     
-    def __str__(self):
-        return f"{self.user.username}"
+    
+    
