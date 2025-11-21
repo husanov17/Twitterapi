@@ -56,7 +56,7 @@ class CodeVerifyAPIView(APIView):
     def verify_code(self, user: User, code: int):
         confirmation = user.confirmations.order_by("-created_at").first()
         if confirmation.code == code and confirmation.is_expired():
-            user.status = CODE_VERIFIED
+            user.status = CODE_VERIFILED
             user.save()
             return True
         
@@ -91,7 +91,7 @@ class FullSignUpAPIView(APIView):
 
     def put(self, request):
         user = request.user
-        if user.status not in [CODE_VERIFIED, DONE]:
+        if user.status not in [CODE_VERIFILED, DONE]:
             return CustomResponse.error(
                 status=False,
                 message="You are not verified."
