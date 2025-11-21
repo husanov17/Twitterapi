@@ -4,7 +4,7 @@ from drf_spectacular.utils import extend_schema
 
 from api.utils import send_code_to_email
 from api.serializers import EmailSerializer, CodeSerializer, FullSignUpSerializer, LoginSerializer
-from api.models import User, CODE_VERIFIED, DONE
+from api.models import User, CODE_VERIFILED, DONE
 from rest_framework.permissions import IsAuthenticated
 from api.utils import CustomResponse
 
